@@ -8,19 +8,19 @@ A PyQt5-based desktop interface to interact with locally hosted Ollama LLMs.
 > Goal: Send a prompt, display non-streamed response.
 
 ### UI Setup
-- [ ] `ui/main_window.py`: Create `QMainWindow` with vertical layout
-- [ ] Add `QTextEdit` for input box (objectName: `inputBox`)
-- [ ] Add `QPushButton` labeled "Send" (objectName: `sendButton`)
-- [ ] Add `QTextBrowser` for output display (objectName: `outputBox`)
+- [x] `ui/main_window.py`: Create `QMainWindow` with vertical layout
+- [x] Add `QTextEdit` for input box (objectName: `inputBox`)
+- [x] Add `QPushButton` labeled "Send" (objectName: `sendButton`)
+- [x] Add `QTextBrowser` for output display (objectName: `outputBox`)
 
 ### Backend
-- [ ] `core/api.py`: Implement `generate(prompt: str, model: str) -> str`
-- [ ] Use `requests.post` with `stream: false` to `localhost:11434/api/generate`
-- [ ] Basic error handling (connection refused, 500, etc.)
+- [x] `core/api.py`: Implement `generate(prompt: str, model: str) -> str`
+- [x] Use `requests.post` with `stream: false` to `localhost:11434/api/generate`
+- [x] Basic error handling (connection refused, 500, etc.)
 
 ### Integration
-- [ ] Connect button click to `send_prompt()` logic
-- [ ] Display model output in `outputBox`
+- [x] Connect button click to `send_prompt()` logic
+- [x] Display model output in `outputBox`
 
 ---
 
@@ -28,17 +28,17 @@ A PyQt5-based desktop interface to interact with locally hosted Ollama LLMs.
 > Goal: Add basic history, model selector, and async responsiveness.
 
 ### Chat History
-- [ ] Append each prompt and response to `outputBox` with clear separators
-- [ ] Add timestamp per message (format: `[HH:MM:SS]`)
+- [x] Append each prompt and response to `outputBox` with clear separators
+- [x] Add timestamp per message (format: `[HH:MM:SS]`)
 
 ### Model Selector
-- [ ] `core/api.py`: Implement `get_models() -> List[str]` from `/api/tags`
-- [ ] Add `QComboBox` for model selection (objectName: `modelSelector`)
+- [x] `core/api.py`: Implement `get_models() -> List[str]` from `/api/tags`
+- [x] Add `QComboBox` for model selection (objectName: `modelSelector`)
 
 ### Usability
-- [ ] Add keyboard shortcut: Ctrl+Enter triggers send
-- [ ] Add `QPushButton` to clear chat (objectName: `clearButton`)
-- [ ] Use `QThread` or `asyncio` to offload `generate()` to avoid UI freezing
+- [x] Add keyboard shortcut: Ctrl+Enter triggers send
+- [x] Add `QPushButton` to clear chat (objectName: `clearButton`)
+- [x] Use `QThread` or `asyncio` to offload `generate()` to avoid UI freezing
 
 ---
 
