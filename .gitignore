@@ -1,0 +1,57 @@
+# Byte-compiled / cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+*.eggs/
+pip-wheel-metadata/
+
+# Virtual environments
+venv/
+.env/
+.venv/
+env/
+ENV/
+
+# PyInstaller artifacts
+*.spec
+
+# GUI toolkit cache (e.g., PyQt)
+*.pyqtc
+*.ui.py
+
+# Qt Designer generated files
+*.ui
+*.qrc
+
+# wxWidgets temporary files
+*.bak
+*.tmp
+
+# Tkinter - usually nothing specific, but safety ignores
+*.tcl
+
+
+# Test results
+htmlcov/
+.tox/
+.coverage
+coverage.xml
+*.cover
+*.py,cover
+
+# Logs
+*.log
+
+# Jupyter/IPython
+.ipynb_checkpoints/
+profile_default/
+__history__
+
