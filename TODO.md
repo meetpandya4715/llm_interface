@@ -100,6 +100,7 @@ A PyQt5-based desktop interface to interact with locally hosted Ollama LLMs.
 
 ## 📁 Folder Structure Plan (For Agent Navigation)
 
+```
 ollama_chat_gui/
 ├── main.py # Entry point
 ├── ui/ # PyQt5 UI components
@@ -111,7 +112,7 @@ ollama_chat_gui/
 ├── styles/ # QSS themes
 ├── settings.json # Persistent config
 └── README.md
-
+```
 
 ---
 
