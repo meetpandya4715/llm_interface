@@ -69,7 +69,7 @@ A PyQt5-based desktop interface to interact with locally hosted Ollama LLMs.
 
 ### Syntax Highlighting
 - [ ] Use `QSyntaxHighlighter` for `QPlainTextEdit` fallback mode
-- [ ] Language detection from code block (e.g., ```python)
+- [ ] Language detection from code block (e.g., ```python ... ``` )
 
 ### Debugging
 - [ ] Display token estimate (use `tiktoken` or similar)
