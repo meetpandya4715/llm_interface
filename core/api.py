@@ -1,7 +1,8 @@
 # Ollama API call logic for v0
 import requests
+from typing import Optional, List, Dict
 
-def generate(prompt: str, model: str, history: list | None = None) -> str:
+def generate(prompt: str, model: str, history: Optional[List[Dict[str, str]]] = None) -> str:
     """
     Generate a response from the LLM, including previous chat history as context.
     history: list of dicts, e.g. [{"role": "user", "content": "hi"}, {"role": "assistant", "content": "hello!"}]
