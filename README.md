@@ -58,15 +58,13 @@ Ollama Chat GUI is a lightweight and user-friendly desktop application designed 
 
 ```
 ollama_chat_gui/
-├── main.py # Entry point
-├── ui/ # PyQt5 UI components
-│ └── main_window.py
-├── core/ # API and logic
-│ ├── api.py # Ollama API calls
-│ └── utils.py # Helpers (tokenizer, markdown, etc.)
-├── assets/ # Icons, themes, etc.
-├── styles/ # QSS themes
-├── settings.json # Persistent config
+├── main.py            # Entry point
+├── core/              # API and logic
+│   └── api.py         # Ollama API calls
+├── ui/                # PyQt5 UI components
+│   └── main_window.py
+├── requirements.txt   # Python dependencies
+├── TODO.md            # Planned features
 └── README.md
 ```
 
