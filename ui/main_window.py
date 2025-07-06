@@ -1,8 +1,10 @@
 # PyQt5 MainWindow for Ollama Chat GUI v1
 from PyQt5.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QTextEdit, QPushButton, QTextBrowser, QComboBox, QHBoxLayout
 from PyQt5.QtCore import Qt, QThread, pyqtSignal
+from PyQt5.QtGui import QTextCursor # Import QTextCursor
 from core.api import generate, get_models
 import datetime
+import html # Import the html module
 
 class GenerateThread(QThread):
     result = pyqtSignal(str, str)
@@ -61,10 +63,20 @@ class MainWindow(QMainWindow):
         try:
             models = get_models()
             self.modelSelector.clear()
-            self.modelSelector.addItems(models)
+            if models:
+                self.modelSelector.addItems(models)
+                self.sendButton.setEnabled(True)
+                self.inputBox.setEnabled(True)
+            else:
+                self.modelSelector.addItem("No models found")
+                self.sendButton.setEnabled(False)
+                self.inputBox.setEnabled(False)
         except Exception as e:
             self.modelSelector.clear()
-            self.modelSelector.addItem(f"Error: {e}")
+            self.modelSelector.addItem("Connection failed")
+            self.display_error(str(e))
+            self.sendButton.setEnabled(False)
+            self.inputBox.setEnabled(False)
 
     def input_keypress(self, event):
         if event.key() == Qt.Key_Return and (event.modifiers() & Qt.ControlModifier):
@@ -78,15 +90,14 @@ class MainWindow(QMainWindow):
             return
         model = self.modelSelector.currentText()
         timestamp = datetime.datetime.now().strftime("[%H:%M:%S]")
-        self.outputBox.append(f"<hr><b>{timestamp} You:</b> {prompt}")
-        
-        # Add user message to history BEFORE making the API call
-        self.chat_history.append({"role": "user", "content": prompt})
-        
+        # Escape HTML in prompt before displaying
+        escaped_prompt = html.escape(prompt)
+        self.outputBox.append(f"<hr><b>{timestamp} You:</b> {escaped_prompt}")
+
         self.inputBox.clear()
         self.sendButton.setEnabled(False)
-        # Pass current chat_history to the thread
-        self.thread = GenerateThread(prompt, model, list(self.chat_history)) # Pass a copy
+        # The new api.generate handles adding the prompt to the history
+        self.thread = GenerateThread(prompt, model, list(self.chat_history))  # Pass a copy
         self.thread.result.connect(self.display_response)
         self.thread.error.connect(self.display_error)
         self.thread.finished.connect(lambda: self.sendButton.setEnabled(True))
@@ -94,15 +105,16 @@ class MainWindow(QMainWindow):
 
     def display_response(self, prompt, response):
         timestamp = datetime.datetime.now().strftime("[%H:%M:%S]")
-        self.outputBox.append(f"<b>{timestamp} Ollama:</b> {response}")
-        # Add assistant message to history
+        # Escape HTML in response before displaying
+        escaped_response = html.escape(response)
+        self.outputBox.append(f"<b>{timestamp} Ollama:</b> {escaped_response}")
+        # Add user and assistant messages to history
+        self.chat_history.append({"role": "user", "content": prompt})
         self.chat_history.append({"role": "assistant", "content": response})
 
     def display_error(self, error):
         self.outputBox.append(f"<span style='color:red'>Error: {error}</span>")
-        # Optionally, remove the last user message from history if API call failed
-        # if self.chat_history and self.chat_history[-1][\"role\"] == \"user\":
-        #     self.chat_history.pop()
+        # No action needed on history, as it's only updated on success
 
 
     def clear_chat(self):
