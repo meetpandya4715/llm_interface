@@ -1,0 +1,16 @@
+{
+  "agents": {
+    "coder": {
+      "model": "myaniu/qwen2.5-1m:latest",
+      "functionCalling": true,
+      "tools": {
+        "glob": {},
+        "ls": {},
+        "cat": {},
+        "grep": {}
+      }
+    }
+  }
+  //  "autoCompact": "false"
+}
+

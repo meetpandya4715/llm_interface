@@ -57,3 +57,12 @@ __history__
 
 # commit log
 commit_log.txt
+.aider*
+
+# Ignore .db and related files inside .opencode/
+.opencode/*.db
+.opencode/*.db-shm
+.opencode/*.db-wal
+
+# Explicitly track .opencode.json at project root (not inside .opencode/)
+!.opencode.json
